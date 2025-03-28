@@ -1,0 +1,89 @@
+## Painting Items
+- Horse hair
+  - Harvested from horses using shears
+- Brush
+  - Created from horse hair and a stick
+  - Three different sizes
+    - 1 pixel
+    - 2 pixels
+    - 4 pixels
+  - Infinite durability
+- Jar
+  - Created from glass and wood (for the lid)
+- Paint
+  - Created from dye, egg and jar
+  - Limited use (64 painted pixels)
+  - Not stackable
+  - Combined with other full-durability paint mixes their colors and produces two jars of that paint.
+  - Combined with other used paint mixes their colors and produces one jar of that paint with the durability being the added durability of both items (capped at max durability).
+- Sealed Paint
+  - Created from dye, egg, slime and jar
+  - Created from unused paint and slime
+  - Stackable (up to 16)
+  - Right click opens up a jar and places it in the inventory, transforming one sealed paint into paint
+- Canvas frame
+  - Created from sticks
+  - Can be combined with other canvas frames to create sized variants
+    - 1x2
+    - 1x3
+    - 2x1
+    - 2x2
+    - 2x3
+    - 3x1
+    - 3x2
+    - 3x3
+- Canvas
+  - Created from a canvas frame and wool
+  - Holds data about a painting
+  - Can be placed
+  - Can be painted on
+- Painting
+  - Finished painting on a canvas
+  - Created by clicking with a name tag on a canvas
+  - Shows the name of the painting and the name of the author
+  - Can be placed
+- Easel
+  - Created from wood and sticks
+  - When right-clicked with a canvas frame shows that canvas frame and allows interactions with it
+  - When right-clicked with a canvas shows that canvas and allows for painting on it
+
+### Printing Items
+- Printer
+  - Created from three bottles, two hoppers, one crafter and three brushes from each size
+  - Contains slots for
+    - Sealed red paint
+    - Sealed green paint
+    - Sealed blue paint
+    - Wool
+    - (Optional) Photo
+  - Starts printing if triggered by redstone (like using a button)
+  - Keeps track of paint levels and unseals paint from its slots as needed
+  - Can select a picture to print after which it will be slowly printed and ejected at the front as a Print
+- Print
+  - Created using the Printer
+  - Holds data about a print
+  - Can be stacked up to 16 items if it contains the same data
+  - Can be applied to canvas frames to create Framed Print
+  - Contains four times the data / double the resolution of an equivalent size painting
+- Framed print
+  - Finished print on a canvas
+  - Can be placed
+  - Can be named if interacted with using a name tag
+  - Contains four times the data / double the resolution of an equivalent size painting
+
+### Photography Items
+- Camera
+  - Limited uses - 8 photos
+  - Right click enters into camera mode
+  - While in camera mode, left click takes a picture
+  - While in camera mode, right click leaves the camera mode
+  - While in camera mode, scroll changes the size (loops through all possible canvas sizes)
+  - Taking a photo puts the photo in the second hand of the player, or ejects a photo in front of the player if there is no space
+- Photo
+  - Viewable by right-clicking
+  - Not stackable
+  - Can be inserted into the printer to print it
+- Camera Platform
+  - Can hold a camera
+  - Can trigger the camera if a redstone signal is applied
+  - Ejects a photo to the side of it
