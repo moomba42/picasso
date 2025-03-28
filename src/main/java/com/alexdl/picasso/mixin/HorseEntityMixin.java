@@ -1,5 +1,6 @@
 package com.alexdl.picasso.mixin;
 
+import com.alexdl.picasso.item.PicassoItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -47,7 +48,7 @@ public abstract class HorseEntityMixin extends AbstractHorse implements VariantH
 
             player.playSound(SoundEvents.SHEEP_SHEAR, 1.0f, 1.0f);
             player.playSound(SoundEvents.HORSE_BREATHE, 0.5f, 1.0f + (random.nextFloat() * 0.2f));
-            ItemStack horsehair = new ItemStack(Items.LEATHER, this.getRandom().nextInt(4) == 1 ? 2 : 1);
+            ItemStack horsehair = PicassoItems.HORSEHAIR.toStack(this.getRandom().nextInt(4) == 1 ? 2 : 1);
             ItemEntity horsehairEntity = this.spawnAtLocation(horsehair);
             if (horsehairEntity != null) {
                 addRandomSpreadMovement(horsehairEntity, this.getRandom());
