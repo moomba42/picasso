@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "c:dyes"
+    },
+    {
+      "item": "picasso:glass_jar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "picasso:jar_of_paint"
+  }
+}

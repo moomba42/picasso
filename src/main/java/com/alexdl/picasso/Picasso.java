@@ -55,6 +55,7 @@ public class Picasso {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(PicassoItems.HORSEHAIR);
             event.accept(PicassoItems.GLASS_JAR);
+            event.accept(PicassoItems.JAR_OF_PAINT);
         }
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(PicassoItems.PAINTBRUSH_SMALL);

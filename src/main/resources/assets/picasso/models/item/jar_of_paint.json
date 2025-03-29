@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "picasso:item/jar_of_paint",
+    "layer1": "picasso:item/jar_of_paint_overlay"
+  }
+}
