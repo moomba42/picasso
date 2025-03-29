@@ -1,5 +1,6 @@
 package com.alexdl.picasso.item.color;
 
+import com.alexdl.picasso.component.PicassoComponents;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.ItemStack;
 
@@ -10,6 +11,12 @@ public class JarOfPaintItemColor implements ItemColor {
             return 0xFFFFFFFF;
         }
 
-        return 0xFFFF0000;
+        Integer color = stack.get(PicassoComponents.PAINT_COLOR);
+
+        if (color == null) {
+            return 0xFFFFFFFF;
+        }
+
+        return color;
     }
 }

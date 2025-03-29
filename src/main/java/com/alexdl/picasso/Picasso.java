@@ -1,5 +1,6 @@
 package com.alexdl.picasso;
 
+import com.alexdl.picasso.component.PicassoComponents;
 import com.alexdl.picasso.item.PicassoItems;
 import com.alexdl.picasso.item.color.JarOfPaintItemColor;
 import com.mojang.logging.LogUtils;
@@ -40,6 +41,7 @@ public class Picasso {
         NeoForge.EVENT_BUS.register(this);
 
         PicassoItems.register(modEventBus);
+        PicassoComponents.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::buildCreativeTabContents);

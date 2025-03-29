@@ -14,6 +14,9 @@
   ],
   "result": {
     "count": 1,
-    "id": "picasso:jar_of_paint"
+    "id": "picasso:jar_of_paint",
+    "components": {
+      "picasso:paint_color": -65536
+    }
   }
 }
