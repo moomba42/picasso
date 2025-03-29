@@ -55,6 +55,11 @@ public class Picasso {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(PicassoItems.HORSEHAIR);
         }
+        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(PicassoItems.PAINTBRUSH_SMALL);
+            event.accept(PicassoItems.PAINTBRUSH_MEDIUM);
+            event.accept(PicassoItems.PAINTBRUSH_BIG);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

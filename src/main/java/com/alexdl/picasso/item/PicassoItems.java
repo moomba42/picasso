@@ -12,6 +12,15 @@ public class PicassoItems {
     public static final DeferredItem<Item> HORSEHAIR = ITEMS.register("horsehair",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> PAINTBRUSH_SMALL = ITEMS.register("paintbrush_small",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> PAINTBRUSH_MEDIUM = ITEMS.register("paintbrush_medium",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> PAINTBRUSH_BIG = ITEMS.register("paintbrush_big",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
