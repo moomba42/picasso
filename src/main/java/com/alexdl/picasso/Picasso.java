@@ -54,6 +54,7 @@ public class Picasso {
     private void buildCreativeTabContents(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(PicassoItems.HORSEHAIR);
+            event.accept(PicassoItems.GLASS_JAR);
         }
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(PicassoItems.PAINTBRUSH_SMALL);

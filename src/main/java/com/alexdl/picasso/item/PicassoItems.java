@@ -19,8 +19,10 @@ public class PicassoItems {
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> PAINTBRUSH_BIG = ITEMS.register("paintbrush_big",
-            () -> new Item(new Item.Properties()));
             () -> new Item(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> GLASS_JAR = ITEMS.register("glass_jar",
+            () -> new Item(new Item.Properties().stacksTo(16)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
