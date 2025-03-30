@@ -16,6 +16,11 @@
   - Not stackable
   - Combined with other full-durability paint mixes their colors and produces two jars of that paint.
   - Combined with other used paint mixes their colors and produces one jar of that paint with the durability being the added durability of both items (capped at max durability).
+- Paint Mixer
+  - Mixes up to five paints
+  - Subtracts an appropriate amount from each jar of paint to fill up a single jar of paint
+  - Given the proportions and the input jars of paint, it might be that there is not enough of a paint to fill a single jar of paint. In that case a semi-filled jar of paint will be produced.
+  - Has an additional slot for a reference jar of paint that can dictate red, yellow, blue, white and black paint proportions
 - Sealed Paint
   - Created from dye, egg, slime and jar
   - Created from unused paint and slime
