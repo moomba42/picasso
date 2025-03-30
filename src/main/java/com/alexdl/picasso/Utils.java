@@ -1,5 +1,6 @@
 package com.alexdl.picasso;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.phys.Vec3;
@@ -12,5 +13,9 @@ public class Utils {
                 (random.nextFloat() - random.nextFloat()) * 0.1F
         );
         entity.setDeltaMovement(entity.getDeltaMovement().add(delta));
+    }
+
+    public static ResourceLocation picassoResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(Picasso.MOD_ID, path);
     }
 }
