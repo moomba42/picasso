@@ -8,6 +8,9 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -26,13 +29,20 @@ public class PicassoRecipeProvider extends RecipeProvider implements IConditionB
 
     @Override
     protected void buildRecipes(@Nonnull RecipeOutput output) {
-        ItemStack result = new ItemStack((ItemLike) PicassoItems.JAR_OF_PAINT);
-        result.set(PicassoComponents.PAINT_COLOR, 0xFFFF0000);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
-                .requires(Items.RED_DYE)
-                .requires(Items.EGG)
-                .requires(PicassoItems.GLASS_JAR)
-                .unlockedBy("has_glass_jar", has(PicassoItems.GLASS_JAR))
-                .save(output, picassoResource("jar_of_paint_red_dye"));
+        for (DyeColor dyeColor : DyeColor.values()) {
+            String recipeName = "jar_of_paint_from_" + dyeColor.toString().toLowerCase() + "_dye";
+            int colorValue = dyeColor.getTextColor() | 0xFF000000;
+            Item dyeIngredient = DyeItem.byColor(dyeColor);
+
+            ItemStack result = new ItemStack((ItemLike) PicassoItems.JAR_OF_PAINT);
+            result.set(PicassoComponents.PAINT_COLOR, colorValue);
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+                    .requires(dyeIngredient)
+                    .requires(Items.EGG)
+                    .requires(PicassoItems.GLASS_JAR)
+                    .unlockedBy("has_glass_jar", has(PicassoItems.GLASS_JAR))
+                    .save(output, picassoResource(recipeName));
+        }
     }
 }
