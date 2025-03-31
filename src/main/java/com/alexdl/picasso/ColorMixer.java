@@ -24,8 +24,6 @@ public class ColorMixer {
         RGB linearA = unpack(colorA);
         RGB linearB = unpack(colorB);
 
-        System.out.println("Mixing colors A: " + linearA + "\nB: " + linearB);
-
         double[] reflectanceA = linearToReflectance(linearA);
         double[] reflectanceB = linearToReflectance(linearB);
 
@@ -44,8 +42,6 @@ public class ColorMixer {
 
         RGB linear = reflectanceToLinear(reflectance);
 
-        System.out.println("Resulting color: " + linear);
-
         return pack(linear);
     }
 
@@ -57,9 +53,9 @@ public class ColorMixer {
     }
 
     private static int pack(RGB linear) {
-        int r = (int) Math.clamp(linear.r * 255, 0, 255);
-        int g = (int) Math.clamp(linear.g * 255, 0, 255);
-        int b = (int) Math.clamp(linear.b * 255, 0, 255);
+        int r = Math.clamp(Math.round(linear.r * 255), 0, 255);
+        int g = Math.clamp(Math.round(linear.g * 255), 0, 255);
+        int b = Math.clamp(Math.round(linear.b * 255), 0, 255);
         return (0xFF << 24) + (r << 16) + (g << 8) + b;
     }
 
