@@ -4,45 +4,49 @@ public class ColorMixer {
     private static final int REFLECTANCE_SAMPLES = 38;
     private static final double EPSILON = 0.00000001;
 
-    /**
-     * Subtractively mixes two colors using
-     * <a href="https://en.wikipedia.org/wiki/Kubelka%E2%80%93Munk_theory">the Kubelka-Munk theory</a>.
-     *
-     * @param colorA An ARGB encoded color
-     * @param colorB An ARGB encoded color
-     * @return An ARGB encoded color result
-     */
-    public static int mixColor(int colorA, int colorB, double proportion) {
-        if (proportion <= 0) {
-            return colorA;
+    public static int mixColors(int colorA, int colorB, int weightA, int weightB) {
+        return mixColors(new int[]{colorA, colorB}, new int[]{weightA, weightB});
+    }
+
+    public static int mixColors(int[] colors, int[] weights) {
+        assert colors.length == weights.length;
+        int count = colors.length;
+
+        double[][] reflectances = new double[count][REFLECTANCE_SAMPLES];
+        double[] dotProducts = new double[count];
+        for (int i = 0; i < count; i++) {
+            reflectances[i] = linearToReflectance(unpack(colors[i]));
+            dotProducts[i] = dotProduct(reflectances[i], CIE_CMF_Y);
         }
 
-        if (proportion >= 1) {
-            return colorB;
+        int biggestWeight = 0;
+        for (int i = 0; i < count; i++) {
+            if(weights[i] > biggestWeight) {
+                biggestWeight = weights[i];
+            }
+        }
+        double[] proportions = new double[count];
+        for (int i = 0; i < count; i++) {
+            proportions[i] = Math.clamp(weights[i] / (double) biggestWeight, 0, 1);
         }
 
-        RGB linearA = unpack(colorA);
-        RGB linearB = unpack(colorB);
+        double[] concentrations = linearToConcentrations(dotProducts, proportions);
 
-        double[] reflectanceA = linearToReflectance(linearA);
-        double[] reflectanceB = linearToReflectance(linearB);
-
-        double dotProductA = dotProduct(reflectanceA, CIE_CMF_Y);
-        double dotProductB = dotProduct(reflectanceB, CIE_CMF_Y);
-
-        double concentration = linearToConcentration(dotProductA, dotProductB, proportion);
-
-        double[] reflectance = new double[REFLECTANCE_SAMPLES];
+        double[] resultReflectance = new double[REFLECTANCE_SAMPLES];
         for (int i = 0; i < REFLECTANCE_SAMPLES; i++) {
-            double KS = (1 - concentration) * (Math.pow(1 - reflectanceA[i], 2) / (2 * reflectanceA[i])) +
-                        concentration * (Math.pow(1 - reflectanceB[i], 2) / (2 * reflectanceB[i]));
+            double KS = 0.0;
+            for (int j = 0; j < count; j++) {
+                double[] reflectance = reflectances[j];
+                double concentration = concentrations[j];
+                KS += concentration * (Math.pow(1 - reflectance[i], 2) / (2 * reflectance[i]));
+            }
             double KM = 1 + KS - Math.sqrt(Math.pow(KS, 2) + 2 * KS);
-            reflectance[i] = KM;
+            resultReflectance[i] = KM;
         }
 
-        RGB linear = reflectanceToLinear(reflectance);
+        RGB resultLinear = reflectanceToLinear(resultReflectance);
 
-        return pack(linear);
+        return pack(resultLinear);
     }
 
     private static RGB unpack(int color) {
@@ -111,11 +115,23 @@ public class ColorMixer {
         return dot;
     }
 
-    private static double linearToConcentration(double linearA, double linearB, double proportion) {
-        double amountA = Math.pow(linearA * (1 - proportion), 2);
-        double amountB = Math.pow(linearB * proportion, 2);
+    private static double[] linearToConcentrations(double[] linearDotProducts, double[] proportions) {
+        assert linearDotProducts.length == proportions.length;
 
-        return amountB / (amountA + amountB);
+        double[] amounts = new double[linearDotProducts.length];
+        double total = 0.0;
+
+        for (int i = 0; i < linearDotProducts.length; i++) {
+            amounts[i] = Math.pow(linearDotProducts[i] * proportions[i], 2);
+            total += amounts[i];
+        }
+
+        double[] result = new double[amounts.length];
+        for (int i = 0; i < amounts.length; i++) {
+            result[i] = amounts[i] / total;
+        }
+
+        return result;
     }
 
     private static RGB reflectanceToLinear(double[] reflectance) {
