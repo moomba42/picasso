@@ -21,7 +21,7 @@ public class ColorMixer {
 
         int biggestWeight = 0;
         for (int i = 0; i < count; i++) {
-            if(weights[i] > biggestWeight) {
+            if (weights[i] > biggestWeight) {
                 biggestWeight = weights[i];
             }
         }
