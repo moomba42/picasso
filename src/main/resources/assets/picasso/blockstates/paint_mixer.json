@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "picasso:block/paint_mixer"
+    },
+    "facing=east": {
+      "model": "picasso:block/paint_mixer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "picasso:block/paint_mixer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "picasso:block/paint_mixer",
+      "y": 270
+    }
+  }
+}

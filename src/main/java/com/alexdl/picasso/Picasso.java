@@ -1,5 +1,7 @@
 package com.alexdl.picasso;
 
+import com.alexdl.picasso.block.PicassoBlocks;
+import com.alexdl.picasso.block.entity.PicassoBlockEntities;
 import com.alexdl.picasso.component.PicassoComponents;
 import com.alexdl.picasso.item.PicassoItems;
 import com.alexdl.picasso.item.color.JarOfPaintItemColor;
@@ -41,6 +43,8 @@ public class Picasso {
         NeoForge.EVENT_BUS.register(this);
 
         PicassoItems.register(modEventBus);
+        PicassoBlocks.register(modEventBus);
+        PicassoBlockEntities.register(modEventBus);
         PicassoComponents.register(modEventBus);
 
         // Register the item to a creative tab
@@ -65,6 +69,9 @@ public class Picasso {
             event.accept(PicassoItems.PAINTBRUSH_SMALL);
             event.accept(PicassoItems.PAINTBRUSH_MEDIUM);
             event.accept(PicassoItems.PAINTBRUSH_BIG);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(PicassoBlocks.PAINT_MIXER);
         }
     }
 

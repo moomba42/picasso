@@ -7,7 +7,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class PicassoItems {
-    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Picasso.MOD_ID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Picasso.MOD_ID);
 
     public static final DeferredItem<Item> HORSEHAIR = ITEMS.register("horsehair",
             () -> new Item(new Item.Properties().stacksTo(64)));

@@ -4,5 +4,7 @@
   "item.picasso.paintbrush_medium": "Medium Paintbrush",
   "item.picasso.paintbrush_big": "Big Paintbrush",
   "item.picasso.glass_jar": "Glass Jar",
-  "item.picasso.jar_of_paint": "Jar of Paint"
+  "item.picasso.jar_of_paint": "Jar of Paint",
+
+  "block.picasso.paint_mixer": "Paint Mixer"
 }
